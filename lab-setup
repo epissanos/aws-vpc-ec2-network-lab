@@ -1,0 +1,24 @@
+# Lab Setup Instructions
+
+This document contains all steps I followed to create this AWS lab.
+
+## VPC Setup
+
+1. Created a VPC with CIDR `10.0.0.0/16`
+2. Created a public subnet with `10.0.1.0/24`
+3. Attached an Internet Gateway (IGW)
+4. Updated route table: added `0.0.0.0/0` → IGW
+
+## EC2 Setup
+
+1. Launched Amazon Linux 2 EC2 in public subnet
+2. Enabled auto-assign public IP
+3. Created key pair and downloaded `.pem` file
+4. Allowed SSH (port 22) from my IP in Security Group
+
+## SSH Access
+
+Used Git Bash:
+```bash
+chmod 400 my-key.pem
+ssh -i my-key.pem ec2-user@<EC2_Public_IP>
